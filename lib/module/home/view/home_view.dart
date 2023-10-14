@@ -1,9 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:jkt48_app/data/jkt48_member_data.dart';
+import 'package:jkt48_app/model/jkt48_member_model.dart';
 import 'package:jkt48_app/module/home/widget/bottom_on_app_bar.dart';
 import 'package:jkt48_app/module/home/widget/profile_member.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  List<JKT48Member> listSearchResult = List.from(listMember);
+
+  void onSearch(String text) {
+    setState(() {
+      listSearchResult = listMember
+          .where((element) =>
+              element.name.toLowerCase().contains(text.toLowerCase()))
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +39,29 @@ class HomeView extends StatelessWidget {
               .bodyLarge!
               .copyWith(color: Colors.white, fontSize: 20),
         ),
-        bottom: const PreferredSize(
-            preferredSize: Size.fromHeight(kToolbarHeight + 20),
-            child: BottomOnAppBar()),
+        bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(kToolbarHeight + 20),
+            child: BottomOnAppBar(
+              onSearch: onSearch,
+            )),
       ),
-      body: const SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: ProfileMember(),
-      ),
+      body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: listSearchResult.isEmpty
+              ? Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: Text(
+                      "Not Found",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: Colors.grey, fontSize: 16),
+                    ),
+                  ),
+                )
+              : ProfileMember(member: listSearchResult)),
     );
   }
 }

@@ -1,20 +1,27 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:jkt48_app/shared/themes/color.dart';
 
 class BottomOnAppBar extends StatelessWidget {
-  const BottomOnAppBar({super.key});
+  const BottomOnAppBar({super.key, required this.onSearch});
+
+  final onSearch;
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController? controller;
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Row(
         children: [
           Expanded(
             child: TextField(
+              controller: controller,
+              onChanged: onSearch,
               cursorColor: CustomColor.primaryColor,
               style: Theme.of(context).textTheme.bodySmall,
-              decoration: InputDecoration(                
+              decoration: InputDecoration(
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                 fillColor: Colors.white,

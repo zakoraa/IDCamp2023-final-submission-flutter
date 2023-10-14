@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:jkt48_app/data/jkt48_member_data.dart';
 import 'package:jkt48_app/module/detailProfile/view/detail_profile_view.dart';
 import 'package:jkt48_app/shared/themes/color.dart';
 
 class ProfileMember extends StatelessWidget {
-  const ProfileMember({super.key});
+  const ProfileMember({super.key, required this.member});
+
+  final List member;
 
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
     return Column(
-        children: listMember
+        children: member
             .map(
               (e) => Container(
                   padding: const EdgeInsets.all(10),
