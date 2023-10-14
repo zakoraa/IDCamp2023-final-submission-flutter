@@ -49,7 +49,7 @@ class DetailProfileView extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 10.0,
+                height: 20.0,
               ),
               Column(
                 children: List.generate(data.length, (index) {

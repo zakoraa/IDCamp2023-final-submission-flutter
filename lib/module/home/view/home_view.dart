@@ -13,6 +13,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   List<JKT48Member> listSearchResult = List.from(listMember);
+  String filter = "Nama";
 
   void onSearch(String text) {
     setState(() {
@@ -23,14 +24,45 @@ class _HomeViewState extends State<HomeView> {
     });
   }
 
+  void showFilterOptions(BuildContext context) {
+    final List<String> options = [
+      'Nama',
+      'Gen',
+    ];
+
+    showMenu(
+      context: context,
+      position: const RelativeRect.fromLTRB(
+          150, 150, 0, 0), // Change the position as needed
+      items: options.map((String option) {
+        return PopupMenuItem<String>(
+          value: option,
+          child: Text(
+            option,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          onTap: () {
+            setState(() {
+              filter = option;
+            });
+          },
+        );
+      }).toList(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.network(
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/JKT48.svg/1200px-JKT48.svg.png",
-          height: 200,
-          width: 70,
+        leading: Padding(
+          padding: const EdgeInsets.only(top: 3.0),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Image.network(
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/JKT48.svg/1200px-JKT48.svg.png",
+            ),
+          ),
         ),
         title: Text(
           "JKT48",
@@ -43,6 +75,7 @@ class _HomeViewState extends State<HomeView> {
             preferredSize: const Size.fromHeight(kToolbarHeight + 20),
             child: BottomOnAppBar(
               onSearch: onSearch,
+              showFilterOptions: () => showFilterOptions(context),
             )),
       ),
       body: SingleChildScrollView(
@@ -61,7 +94,10 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                 )
-              : ProfileMember(member: listSearchResult)),
+              : ProfileMember(
+                  member: listSearchResult,
+                  filter: filter,
+                )),
     );
   }
 }

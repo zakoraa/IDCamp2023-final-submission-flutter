@@ -4,20 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:jkt48_app/shared/themes/color.dart';
 
 class BottomOnAppBar extends StatelessWidget {
-  const BottomOnAppBar({super.key, required this.onSearch});
+  const BottomOnAppBar({super.key, required this.onSearch, required this.showFilterOptions});
 
   final onSearch;
+  final Function showFilterOptions;
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController? controller;
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Row(
         children: [
           Expanded(
             child: TextField(
-              controller: controller,
               onChanged: onSearch,
               cursorColor: CustomColor.primaryColor,
               style: Theme.of(context).textTheme.bodySmall,
@@ -45,9 +44,12 @@ class BottomOnAppBar extends StatelessWidget {
           const SizedBox(
             width: 20.0,
           ),
-          const Icon(
-            Icons.filter_list,
-            color: Colors.white,
+          GestureDetector(
+            onTap: () => showFilterOptions(),
+            child: const Icon(
+              Icons.filter_list,
+              color: Colors.white,
+            ),
           )
         ],
       ),

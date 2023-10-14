@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:jkt48_app/model/jkt48_member_model.dart';
 import 'package:jkt48_app/module/detailProfile/view/detail_profile_view.dart';
 import 'package:jkt48_app/shared/themes/color.dart';
 
+// ignore: must_be_immutable
 class ProfileMember extends StatelessWidget {
-  const ProfileMember({super.key, required this.member});
+  ProfileMember({super.key, required this.member, required this.filter});
 
-  final List member;
+  List<JKT48Member> member;
+  final String filter;
+
+  void filterWithGen() {
+    if (filter == "Gen") {
+      member.sort((a, b) => a.gen.compareTo(b.gen));
+    } else {
+      member.sort((a, b) => a.name.compareTo(b.name));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
+    filterWithGen();
     return Column(
         children: member
             .map(
@@ -68,28 +80,32 @@ class ProfileMember extends StatelessWidget {
                                   )),
                             ],
                           ),
-                          ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          DetailProfileView(jkt48Member: e),
-                                    ));
-                              },
-                              style: const ButtonStyle(
-                                backgroundColor: MaterialStatePropertyAll(
-                                    CustomColor.primaryColor),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Lihat Detail Profile Member  ->",
-                                  style: textTheme.bodySmall!.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    color: CustomColor.secondaryColor,
-                                  ),
+                          SizedBox(
+                            height: 40,
+                            width: 150,
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            DetailProfileView(jkt48Member: e),
+                                      ));
+                                },
+                                style: const ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      CustomColor.primaryColor),
                                 ),
-                              ))
+                                child: Center(
+                                  child: Text(
+                                    "Lihat Profile ->",
+                                    style: textTheme.bodySmall!.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      color: CustomColor.secondaryColor,
+                                    ),
+                                  ),
+                                )),
+                          )
                         ],
                       )
                     ],
