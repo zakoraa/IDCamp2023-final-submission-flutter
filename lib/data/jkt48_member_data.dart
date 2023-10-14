@@ -89,7 +89,7 @@ List<JKT48Member> listMember = [
       dateOfBirth: "7 Agustus 2006",
       bloodGroup: "B",
       height: 160,
-      gen: 7,
+      gen: 10,
       profilePicture:
           "https://jkt48.com/profile/gabriela_abigail.jpg?v=20230531"),
   JKT48Member(

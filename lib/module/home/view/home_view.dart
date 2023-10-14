@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jkt48_app/data/jkt48_member_data.dart';
 import 'package:jkt48_app/model/jkt48_member_model.dart';
-import 'package:jkt48_app/module/home/widget/bottom_on_app_bar.dart';
-import 'package:jkt48_app/module/home/widget/profile_member.dart';
+import 'package:jkt48_app/module/home/widget/grid_member.dart';
+import 'package:jkt48_app/module/home/widget/search_filter.dart';
+import 'package:jkt48_app/module/home/widget/column_profile_member.dart';
+import 'package:jkt48_app/shared/utils/responsive.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -73,28 +75,16 @@ class _HomeViewState extends State<HomeView> {
         ),
         bottom: PreferredSize(
             preferredSize: const Size.fromHeight(kToolbarHeight + 20),
-            child: BottomOnAppBar(
+            child: SearchFilter(
               onSearch: onSearch,
               showFilterOptions: () => showFilterOptions(context),
             )),
       ),
       body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          child: listSearchResult.isEmpty
-              ? Container(
-                  margin: const EdgeInsets.only(top: 50),
-                  width: MediaQuery.of(context).size.width,
-                  child: Center(
-                    child: Text(
-                      "Not Found",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: Colors.grey, fontSize: 16),
-                    ),
-                  ),
-                )
-              : ProfileMember(
+          child: Responsive.isMobile(context)
+              ? ColumnMember(member: listSearchResult, filter: filter)
+              : GridMember(
                   member: listSearchResult,
                   filter: filter,
                 )),

@@ -4,6 +4,7 @@ import 'package:jkt48_app/shared/themes/color.dart';
 class CustomTheme {
   static ThemeData get lightTheme => ThemeData.light().copyWith(
       primaryColor: CustomColor.primaryColor,
+      scaffoldBackgroundColor: CustomColor.backgroundColor,
       appBarTheme: const AppBarTheme(backgroundColor: CustomColor.primaryColor),
       textTheme: const TextTheme(
         bodyLarge: TextStyle(

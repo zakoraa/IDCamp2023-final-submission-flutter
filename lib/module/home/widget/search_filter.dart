@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:jkt48_app/shared/themes/color.dart';
 
-class BottomOnAppBar extends StatelessWidget {
-  const BottomOnAppBar({super.key, required this.onSearch, required this.showFilterOptions});
+class SearchFilter extends StatelessWidget {
+  const SearchFilter({super.key, required this.onSearch, required this.showFilterOptions});
 
   final onSearch;
   final Function showFilterOptions;
