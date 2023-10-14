@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jkt48_app/module/home/widget/bottom_on_app_bar.dart';
 import 'package:jkt48_app/module/home/widget/profile_member.dart';
 
 class HomeView extends StatelessWidget {
@@ -10,8 +11,8 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         leading: Image.network(
           "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/JKT48.svg/1200px-JKT48.svg.png",
-          height: 50,
-          width: 30,
+          height: 200,
+          width: 70,
         ),
         title: Text(
           "JKT48",
@@ -20,6 +21,9 @@ class HomeView extends StatelessWidget {
               .bodyLarge!
               .copyWith(color: Colors.white, fontSize: 20),
         ),
+        bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(kToolbarHeight + 20),
+            child: BottomOnAppBar()),
       ),
       body: const SingleChildScrollView(
         physics: BouncingScrollPhysics(),

@@ -66,18 +66,18 @@ class ProfileMember extends StatelessWidget {
                                   )),
                             ],
                           ),
-                          Container(
-                              margin: const EdgeInsets.only(bottom: 5),
-                              height: 30,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: CustomColor.primaryColor),
+                          ElevatedButton(
+                              onPressed: () {},
+                              style: const ButtonStyle(
+                                
+                                backgroundColor: MaterialStatePropertyAll(
+                                    CustomColor.primaryColor),
+                              ),
                               child: Center(
                                 child: Text(
                                   "Lihat Detail Profile Member  ->",
                                   style: textTheme.bodySmall!.copyWith(
+                                    fontWeight: FontWeight.w600,
                                     color: CustomColor.secondaryColor,
                                   ),
                                 ),

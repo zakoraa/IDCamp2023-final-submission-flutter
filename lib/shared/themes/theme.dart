@@ -21,5 +21,6 @@ class CustomTheme {
           fontSize: 12,
           color: Colors.black,
         ),
-      ));
+      ),
+      iconTheme: const IconThemeData(color: Colors.grey, size: 30));
 }
