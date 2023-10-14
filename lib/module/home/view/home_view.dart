@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jkt48_app/module/home/widget/profile_member.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -14,12 +15,15 @@ class HomeView extends StatelessWidget {
         ),
         title: Text(
           "JKT48",
-          style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(color: Colors.white, fontSize: 20),
         ),
       ),
-      body: Center(
-        child:
-            Text("HaLLO WORLD", style: Theme.of(context).textTheme.bodyLarge),
+      body: const SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: ProfileMember(),
       ),
     );
   }
