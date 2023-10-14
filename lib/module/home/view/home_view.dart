@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jkt48_app/data/jkt48_member_data.dart';
 import 'package:jkt48_app/model/jkt48_member_model.dart';
-import 'package:jkt48_app/module/home/widget/grid_member.dart';
+import 'package:jkt48_app/module/home/widget/wrap_member.dart';
 import 'package:jkt48_app/module/home/widget/search_filter.dart';
-import 'package:jkt48_app/module/home/widget/column_profile_member.dart';
+import 'package:jkt48_app/module/home/widget/column_member.dart';
 import 'package:jkt48_app/shared/utils/responsive.dart';
 
 class HomeView extends StatefulWidget {
@@ -84,7 +84,7 @@ class _HomeViewState extends State<HomeView> {
           physics: const BouncingScrollPhysics(),
           child: Responsive.isMobile(context)
               ? ColumnMember(member: listSearchResult, filter: filter)
-              : GridMember(
+              : WrapMember(
                   member: listSearchResult,
                   filter: filter,
                 )),

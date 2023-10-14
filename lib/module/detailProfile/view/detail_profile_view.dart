@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jkt48_app/model/jkt48_member_model.dart';
 import 'package:jkt48_app/shared/themes/color.dart';
+import 'package:jkt48_app/shared/utils/responsive.dart';
 
 class DetailProfileView extends StatelessWidget {
   const DetailProfileView({super.key, required this.jkt48Member});
@@ -23,7 +24,7 @@ class DetailProfileView extends StatelessWidget {
           actions: [
             jkt48Member.name == "Flora Shafiqa Riyadi"
                 ? const Padding(
-                    padding: EdgeInsets.only(right: 10),
+                    padding: EdgeInsets.only(right: 15),
                     child: Icon(
                       Icons.star,
                       color: Color.fromARGB(255, 255, 251, 7),
@@ -56,7 +57,9 @@ class DetailProfileView extends StatelessWidget {
                   final key = data.keys.elementAt(index);
                   final value = data.values.elementAt(index);
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: Responsive.isMobile(context)
+                        ? const EdgeInsets.symmetric(horizontal: 20)
+                        : const EdgeInsets.symmetric(horizontal: 80),
                     child: Column(
                       children: [
                         Align(
@@ -72,30 +75,36 @@ class DetailProfileView extends StatelessWidget {
                                     style: textTheme.bodyMedium!
                                         .copyWith(fontSize: 16)),
                                 key == "Gen"
-                                    ? Container(
-                                        height: 30,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: CustomColor.primaryColor),
-                                        child: Center(
-                                          child: Text(
-                                            "Gen $value",
-                                            style: textTheme.bodyMedium!
-                                                .copyWith(
-                                                    color: CustomColor
-                                                        .secondaryColor),
+                                    ? SizedBox(
+                                      width: 130,
+                                      child: Container(
+                                          height: 30,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: CustomColor.primaryColor),
+                                          child: Center(
+                                            child: Text(
+                                              "Gen $value",
+                                              style: textTheme.bodyMedium!
+                                                  .copyWith(
+                                                      color: CustomColor
+                                                          .secondaryColor),
+                                            ),
                                           ),
                                         ),
-                                      )
-                                    : Text(
-                                        "$value",
-                                        textAlign: TextAlign.start,
-                                        style: textTheme.bodySmall!
-                                            .copyWith(fontSize: 14),
-                                      )
+                                    )
+                                    : SizedBox(
+                                      width: 130,
+                                      child: Text(
+                                          "$value",
+                                          textAlign: TextAlign.start,
+                                          style: textTheme.bodySmall!
+                                              .copyWith(fontSize: 14),
+                                        ),
+                                    )
                               ],
                             ),
                           ),

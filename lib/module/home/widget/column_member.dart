@@ -66,9 +66,26 @@ class ColumnMember extends StatelessWidget {
                                   const SizedBox(
                                     height: 15.0,
                                   ),
-                                  Text(
-                                    e.name,
-                                    style: textTheme.bodyMedium,
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        e.name,
+                                        style: textTheme.bodyMedium,
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      e.name == "Flora Shafiqa Riyadi"
+                                          ? const Icon(
+                                              Icons.star,
+                                              color: Color.fromARGB(
+                                                  255, 255, 251, 7),
+                                              size: 25,
+                                            )
+                                          : const SizedBox.shrink()
+                                    ],
                                   ),
                                   const SizedBox(
                                     height: 10.0,

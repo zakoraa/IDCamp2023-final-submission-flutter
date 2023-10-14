@@ -5,8 +5,8 @@ import 'package:jkt48_app/shared/themes/color.dart';
 import 'package:jkt48_app/shared/widgets/not_found.dart';
 
 // ignore: must_be_immutable
-class GridMember extends StatelessWidget {
-  GridMember({super.key, required this.member, required this.filter});
+class WrapMember extends StatelessWidget {
+  WrapMember({super.key, required this.member, required this.filter});
 
   List<JKT48Member> member;
   final String filter;
@@ -130,16 +130,38 @@ class GridMember extends StatelessWidget {
                                 top: 15,
                                 right: 10,
                                 child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
+                                    padding: e.name == "Flora Shafiqa Riyadi"
+                                        ? const EdgeInsets.symmetric(
+                                            horizontal: 10)
+                                        : const EdgeInsets.symmetric(
+                                            horizontal: 15),
                                     decoration: BoxDecoration(
                                         color: CustomColor.secondaryColor,
                                         borderRadius: BorderRadius.circular(5)),
-                                    child: Text(
-                                      "Gen ${e.gen}",
-                                      style: textTheme.bodyMedium!.copyWith(
-                                          color: CustomColor.primaryColor,
-                                          fontSize: 12),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "Gen ${e.gen}",
+                                          style: textTheme.bodyMedium!.copyWith(
+                                              color: CustomColor.primaryColor,
+                                              fontSize: 12),
+                                        ),
+                                        const SizedBox(
+                                          width: 5.0,
+                                        ),
+                                        e.name == "Flora Shafiqa Riyadi"
+                                            ? const Align(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: Icon(
+                                                  Icons.star,
+                                                  color: Color.fromARGB(
+                                                      255, 255, 251, 7),
+                                                  size: 18,
+                                                ),
+                                              )
+                                            : const SizedBox.shrink()
+                                      ],
                                     )),
                               )
                             ],
