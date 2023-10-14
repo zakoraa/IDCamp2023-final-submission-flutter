@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jkt48_app/data/jkt48_member_data.dart';
+import 'package:jkt48_app/module/detailProfile/view/detail_profile_view.dart';
 import 'package:jkt48_app/shared/themes/color.dart';
 
 class ProfileMember extends StatelessWidget {
@@ -67,9 +68,15 @@ class ProfileMember extends StatelessWidget {
                             ],
                           ),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          DetailProfileView(jkt48Member: e),
+                                    ));
+                              },
                               style: const ButtonStyle(
-                                
                                 backgroundColor: MaterialStatePropertyAll(
                                     CustomColor.primaryColor),
                               ),
