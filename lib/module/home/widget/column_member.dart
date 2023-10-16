@@ -4,11 +4,17 @@ import 'package:jkt48_app/module/detailProfile/view/detail_profile_view.dart';
 import 'package:jkt48_app/shared/themes/color.dart';
 import 'package:jkt48_app/shared/widgets/not_found.dart';
 
-// ignore: must_be_immutable
+// code review idCamp : 
+// Code comments // ignore: ... are used to disable linting on a specific line of code. 
+// However, the use of these comments should be avoided 
+// because they can cause warning codes to go undetected.
 class ColumnMember extends StatelessWidget {
-  ColumnMember({super.key, required this.member, required this.filter});
+  const ColumnMember({super.key, required this.member, required this.filter});
 
-  List<JKT48Member> member;
+  // code review idCamp : 
+  // The StatelessWidget class does not change the properties in it, 
+  //so the properties should be declared as final. 
+  final List<JKT48Member> member;
   final String filter;
 
   void filterWithGen() {

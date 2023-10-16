@@ -17,7 +17,9 @@ class _HomeViewState extends State<HomeView> {
   List<JKT48Member> listSearchResult = List.from(listMember);
   String filter = "Nama";
 
-  void onSearch(String text) {
+// code review idCamp :
+// make the function private, because this function is only used in this class
+  void _onSearch(String text) {
     setState(() {
       listSearchResult = listMember
           .where((element) =>
@@ -26,7 +28,9 @@ class _HomeViewState extends State<HomeView> {
     });
   }
 
-  void showFilterOptions(BuildContext context) {
+// code review idCamp :
+// make the function private, because this function is only used in this class
+  void _showFilterOptions(BuildContext context) {
     final List<String> options = [
       'Nama',
       'Gen',
@@ -34,8 +38,7 @@ class _HomeViewState extends State<HomeView> {
 
     showMenu(
       context: context,
-      position: const RelativeRect.fromLTRB(
-          150, 150, 0, 0), // Change the position as needed
+      position: const RelativeRect.fromLTRB(150, 150, 0, 0),
       items: options.map((String option) {
         return PopupMenuItem<String>(
           value: option,
@@ -76,8 +79,8 @@ class _HomeViewState extends State<HomeView> {
         bottom: PreferredSize(
             preferredSize: const Size.fromHeight(kToolbarHeight + 20),
             child: SearchFilter(
-              onSearch: onSearch,
-              showFilterOptions: () => showFilterOptions(context),
+              onSearch: _onSearch,
+              showFilterOptions: () => _showFilterOptions(context),
             )),
       ),
       body: SingleChildScrollView(
@@ -87,7 +90,12 @@ class _HomeViewState extends State<HomeView> {
               : WrapMember(
                   member: listSearchResult,
                   filter: filter,
-                )),
+                )
+
+          // code review idCamp :
+          // Add a comma (,) at the end of the parameter or widget
+          // to make formatting and indentation neater.
+          ),
     );
   }
 }
